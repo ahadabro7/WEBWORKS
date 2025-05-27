@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bulb Control & User Interaction</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 20px;
+        }
+        header, footer {
+          background: #333;
+          color: white;
+          padding: 10px;
+        }
+        img {
+          width: 150px;
+          margin: 20px 0;
+        }
+        .section {
+          margin: 20px 0;
+        }
+        button, input[type="radio"], input[type="checkbox"] {
+          margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h3>Assignment No : 02</h3>
+    <h3>Member 1 : Abdul Ahad 39245</h3>
+    <h3>Member 2 : Madan Lal 36653 </h3>
+    <h2>Welcome to Bulb Controller</h2>
+    <div id="dateTimeHeader"></div>
+</header>
+
+<div class="section">
+    <img id="bulb" src="https://www.w3schools.com/js/pic_bulboff.gif" alt="Bulb">
+
+    <div>
+        <label><input type="radio" name="bulb" onclick="turnOn()">Turn ON</label>
+        <label><input type="radio" name="bulb" onclick="turnOff()">Turn OFF</label>
+    </div>
+
+    <div>
+        <button onclick="turnOn()">Turn ON</button>
+        <button onclick="turnOff()">Turn OFF</button>
+    </div>
+
+    <div>
+        <label><input type="checkbox" id="bulbCheckbox" onchange="toggleByCheckbox()">Toggle Bulb (Checkbox)</label>
+    </div>
+
+    <div>
+        <button onclick="toggleBulb()">Toggle Bulb (Unified)</button>
+    </div>
+
+    <div>
+        <button onclick="countAndToggle()">Toggle & Count</button>
+        <p>Clicked: <span id="clickCount">0</span> times</p>
+    </div>
+</div>
+
+<div class="section">
+    <h3>Enter Your Name:</h3>
+    <input type="text" id="userNameInput" placeholder="Your name" oninput="showName()">
+
+    <h1 id="nameH1"></h1>
+    <p id="nameP"></p>
+    <div id="nameDiv"></div>
+</div>
+
+<footer>
+    <div id="dateTimeFooter"></div>
+</footer>
+
+<script>
+    let isOn = false;
+    let count = 0;
+
+    function turnOn() {
+      document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulbon.gif";
+      isOn = true;
+    }
+
+    function turnOff() {
+      document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulboff.gif";
+      isOn = false;
+    }
+
+    function toggleBulb() {
+      isOn ? turnOff() : turnOn();
+    }
+
+    function toggleByCheckbox() {
+      toggleBulb();
+    }
+
+    function countAndToggle() {
+      toggleBulb();
+      count++;
+      document.getElementById("clickCount").innerText = count;
+    }
+
+    function showName() {
+      let name = document.getElementById("userNameInput").value;
+      document.getElementById("nameH1").innerText = name;
+      document.getElementById("nameP").innerText = name;
+      document.getElementById("nameDiv").innerText = name;
+    }
+
+    function showDateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleString();
+      document.getElementById("dateTimeHeader").innerText = timeString;
+      document.getElementById("dateTimeFooter").innerText = timeString;
+    }
+
+    setInterval(showDateTime, 1000);
+    showDateTime();
+</script>
+
+</body>
+</html>
